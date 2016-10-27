@@ -1,0 +1,87 @@
+<header id="header">
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#/">Home</a></li>
+                    <li class="dropdown {MENU_JOURNAL_INFO}">
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown">Journal Information<b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a ng-href="#scope">Aims and Scope</a></li>
+                            <li><a ng-href="#editors">Editorial Board</a></li>
+                            <li><a ng-href="#reviewers">Executive Peer-Reviewers</a></li>
+                            <li><a ng-href="#abstract">Abstracting/Indexing</a></li>
+                            <li><a ng-href="#subscription">Subscription Information</a></li>
+                            <li><a ng-href="#alert">TOC Alerting Service</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown {MENU_AUTH_INFO}">
+                        <a href="" class="dropdown-toggle" data-toggle="dropdown">Author's Information <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a ng-href="#guideline">Authors' Guidelines</a></li>
+                            <li><a ng-href="#login">Submit your Paper</a></li>
+                            <li><a ng-href="#status">Track your Paper</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown {MENU_ISSUE}">
+                        <a ng-href="" class="dropdown-toggle" data-toggle="dropdown">Issues <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li><a ng-href="#articles">Forthcoming Articles</a></li>
+                            <li><a ng-href="#issues">Current Issue</a></li>
+                            <li><a ng-href="#past">Past Issues</a></li>
+                        </ul>
+                    </li>
+                    <li class="{MENU_SP_ISSUE}"><a ng-href="#special">Special Issues</a></li>
+                    <li class="{ANNOUNC}"><a ng-href="#new">Announcements</a></li>
+                    <li class="{TOP_TEN}"><a ng-href="#top-article">Top 10 Articles</a></li>
+                    <li class="dropdown">
+                        <a href="" data-toggle="dropdown" class="openTabNav dropdown-toggle">Search <b class="caret"></b></a>
+                        <ul class="dropdown-menu openNav">
+                            <li>
+                                <form id="simpleSearchForm" action="" method="POST">
+                                    <div class="col-xs-12">
+                                        <input type="text" name="KEY" class="form-control searchInput" placeholder="Search for an article...">
+                                    </div>
+                                    <div class="col-xs-12" style="margin-top: -35px;">
+                                        <span class="searchElement">Title</span>
+                                        <input type="checkbox" name="Title">
+                                        <span class="searchElement">Authors</span>
+                                        <input type="checkbox" name="Author">
+                                        <span class="searchElement">Keywords</span>
+                                        <input type="checkbox" name="Keyword">
+                                        <span class="searchElement">Abstract</span>
+                                        <input type="checkbox" name="Abstract">
+                                    </div>
+                                    <div class="col-xs-12" style="margin-top: -60px;">
+                                        <button type="submit" class="btn btn-sm btn-success btn-default" style="margin-left: 7vw;">Search</button>
+                                        <a href="" class="adv-search pull-left">Advanced Search</a>
+                                    </div>
+                                </form>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li ng-if="checkLogin">
+                        <a ng-href="">{{userInfo.username}}</a>
+                    </li>
+                    <li ng-if="!checkLogin">
+                        <a ng-href="#submit">Author's Login</a>
+                    </li>
+                </ul>
+            </div><!--/.nav-collapse -->
+        </div>
+    </div>
+    <div class="container" style="margin-top: 50px;">
+        <div id="logo">
+            <img src="styles/images/logo.png" alt="Journal of Educational Technology &amp; Society">
+            <span class="byline">Journal of</span>
+            <h1 id="title">Educational Technology &amp; Society</h1>
+            <div class="socialIcons">
+                <a href="http://www.facebook.com" title="Facebook" target="_blank"><img src="styles/images/facebook.png" alt="Facebook" title="Faceboook"></a>
+                <a href="https://twitter.com" title="Twitter" target="_blank"><img src="styles/images/twitter.png" alt="Twitter" title="Twitter"></a>
+                <a href="https://www.linkedin.com" title="LinkedIn" target="_blank"><img src="styles/images/linkedIn.png" alt="LinkedIn" title="LinkedIn"></a>
+            </div>
+        </div><!-- /logo -->
+    </div>
+</header>

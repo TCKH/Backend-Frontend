@@ -1,0 +1,48 @@
+<div id="mainContainer" class="container">
+    <div class="page-header">
+        <h1 class="blue">TOC Alerting Service</h1>
+    </div>
+    <div>
+
+        <p>This form allows you to either activate or cancel delivery of table of contents alerts for Educational Technology &amp; Society Journal.</p>
+        <p>To confirm your identity and prevent third parties from activating or cancelling alerts without your knowledge, an e-mail message with a confirmation code will be sent to the address you specify in the form. Simply wait for this message to arrive, then follow the instructions to confirm either operation.</p>
+        <form id="toc" action="toc_subscribe.php" method="post" class="form-horizontal" role="form" name="tocForm">
+            <div class="form-group">
+                <label for="inputFirstname" class="col-sm-2 control-label">First Name (*):</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control input-sm" id="inputFirstname" placeholder="First Name" name="fname" required="">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputLastname" class="col-sm-2 control-label">Last Name (*):</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control input-sm" id="inputLastname" placeholder="Last Name" name="lname" required="">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputEmail" class="col-sm-2 control-label">Email (*):</label>
+                <div class="col-sm-4">
+                    <input type="email" class="form-control input-sm" id="inputEmail" placeholder="Email" name="mail" required="">
+                </div>
+            </div>
+            <p><i>(*) Mandatory Fields</i></p>
+            <p>Select TOC Format:</p>
+            <div class="form-group">
+                <div class="col-sm-10">
+                    <label class="radio-inline">
+                        <input name="toc_format" type="radio" value="0" checked=""><b>HTML format</b>
+                    </label>
+                    <label class="radio-inline">
+                        <input name="toc_format" type="radio" value="1"><b>ASCII (plain text)</b>
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <input type="submit" class="btn btn-success" name="SUB" value="Subscribe">
+                    <input type="submit" class="btn btn-default" name="UNSUB" value="Unsubscribe">
+                </div>
+            </div>
+        </form>
+    </div><!-- /row -->
+</div>

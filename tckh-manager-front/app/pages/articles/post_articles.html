@@ -1,0 +1,44 @@
+<div id="mainContainer" class="container">
+    <div class="page-header">
+        <img src="styles/images/news.png" style="max-width: 60px;float: left" alt="new articles">
+        <h1 class="blue" style="padding-top: 20px;">New article</h1>
+    </div>
+    <div>
+        <div class="row">
+            <div class="col-md-8 col-xs-8" style="left: 16%;">
+                <form id="register-form" ng-submit="vm.register()" method="post" class="form-horizontal" role="form">
+                    <div class="form-group">
+                        <label class="col-md-12" for="category">Category list:</label>
+                        <div class="col-md-3">
+                            <select class="form-control" id="category">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <input type="text" ng-model="vm.name" required
+                                   class="form-control required" name="name" placeholder="Title article">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <h3>Editor</h3>
+                            <div text-angular="text-angular" name="htmlcontent" ng-model="htmlcontent" ta-disabled='disabled'></div>
+                        </div>
+                        <div role="alert">
+                              <span class="error" ng-show="register-form.name.$error.required">
+                               Required!</span>
+                        </div>
+                    </div>
+                    <div class="form-group text-center col-md-12">
+                        <button type="submit" name="submit_author" class="btn btn-success">Sign Up</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div><!-- /row -->
+</div>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html ng-app="appManager">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="styles/css/normalize.css" rel="stylesheet">
+    <link href="styles/css/bootstrap.css" rel="stylesheet">
+    <link href="styles/css/font-awesome.min.css" rel="stylesheet">
+    <link href="styles/css/main.css" rel="stylesheet">
+    <link href="styles/css/them.css" rel="stylesheet">
+    <link href="styles/css/responsive.css" rel="stylesheet">
+
+    <title ng-bind="title"></title>
+</head>
+<body >
+<ng-include src="'pages/shared/header.html'"></ng-include>
+<main>
+    <div class="container-fluid">
+        <ng-view></ng-view>
+    </div>
+</main>
+<ng-include src="'pages/shared/footer.html'"></ng-include>
+</body>
+
+<script src="scripts/libs/jquery.min.js"></script>
+<script src="scripts/libs/angular.js"></script>
+<script src="scripts/libs/angular-route.js"></script>
+<script src="scripts/libs/bootstrap.min.js"></script>
+<script src="scripts/libs/bootstrap-switch.min.js"></script>
+<script src="scripts/libs/ng-file-upload.min.js"></script>
+<script src="scripts/libs/angular-resource.min.js"></script>
+<script src="scripts/libs/angular-sanitize.min.js"></script>
+<script src="scripts/libs/textAngular.min.js"></script>
+<script src="scripts/app.js"></script>
+<script src="scripts/services/homeService.js"></script>
+<script src="scripts/controllers/homeController.js"></script>
+<script src="scripts/controllers/journal/abstractController.js"></script>
+<script src="scripts/controllers/journal/editorBoardController.js"></script>
+<script src="scripts/controllers/journal/AlertController.js"></script>
+<script src="scripts/controllers/journal/executivePeerController.js"></script>
+<script src="scripts/controllers/journal/scopeController.js"></script>
+<script src="scripts/controllers/journal/SubscriptionController.js"></script>
+<script src="scripts/controllers/author/GuidelineController.js"></script>
+<script src="scripts/controllers/author/LoginController.js"></script>
+<script src="scripts/controllers/author/requestPasswordController.js"></script>
+<script src="scripts/controllers/author/registerController.js"></script>
+<script src="scripts/controllers/author/statusController.js"></script>
+<script src="scripts/controllers/issues/issuesController.js"></script>
+<script src="scripts/controllers/issues/articlesController.js"></script>
+<script src="scripts/controllers/issues/PostController.js"></script>
+<script src="scripts/controllers/issues/pastIssuesController.js"></script>
+<script src="scripts/controllers/specialIssues/specialIssuesController.js"></script>
+<script src="scripts/controllers/annoucement/newController.js"></script>
+<script src="scripts/controllers/topArticles/TopArticlesController.js"></script>
+<script src="scripts/services/RegisterService.js"></script>
+<script src="scripts/services/LoginFactory.js"></script>
+</html>

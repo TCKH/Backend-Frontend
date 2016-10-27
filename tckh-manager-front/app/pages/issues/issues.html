@@ -1,0 +1,26 @@
+<div id="mainContainer" class="container">
+    <div class="panel panel-default issTable">
+        <div class="table-responsive singleIssue">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th colspan="5">Full Length Articles</th>
+                </tr>
+                </thead>
+                <tbody ng-repeat="x in vm.dataContact">
+                    <tr>
+                        <td class="detRow">
+                            <p class="issDetails title">{{x.name}}</p>
+                            <p class="issDetails editor"><i>{{x.email}}</i></p>
+                        </td>
+                        <td><p>{{x.id}}</p></td>
+                        <td class="downDoc">{{x.address}}</td>
+                        <td class="docSize">{{x.telephone}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+</div>

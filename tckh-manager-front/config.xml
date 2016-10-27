@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE coverity SYSTEM "coverity_config.dtd">
+<coverity>
+<!-- Version 8.5.0 -->
+    <!-- <cit_version>1</cit_version> -->
+    <config>
+    <prevent>
+<!--       <disable>FORWARD_NULL</disable>
+      <disable>EXPLICIT_THIS_EXPECTED</disable> -->
+    </prevent>
+      <include>./template-javascript-config-0/coverity_config.xml</include>
+      <include>./template-html-config-0/coverity_config.xml</include>
+    </config>
+</coverity>
+

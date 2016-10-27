@@ -1,0 +1,78 @@
+<div id="mainContainer" class="container">
+    <div class="jumbotron">
+       <div class="col-xs-12" ng-repeat="post in vm.dataPost">
+           <h3>{{post.title}}</h3>
+           <ul class="nav nav-tabs">
+               <li class="active"><a style="cursor:pointer" data-toggle="tab" data-target="#abstracts{{post.id}}">Abstract</a></li>
+               <li><a style="cursor:pointer" data-toggle="tab" data-target="#highlights{{post.id}}">Highlight</a></li>
+               <li><a style="cursor:pointer" data-toggle="tab" ng-click="vm.downloadFile()">PDF file</a></li>
+           </ul>
+
+           <div class="tab-content">
+               <div id="abstracts{{post.id}}" class="tab-pane fade in active">
+                   <h3>Abstract</h3>
+                   <p>{{post.abstracts}}</p>
+               </div>
+               <div id="highlights{{post.id}}" class="tab-pane fade">
+                   <h3>Highlight</h3>
+                   <p>{{post.highlights}}</p>
+               </div>
+           </div>
+       </div>
+    </div>
+    <div class="detailsBlock">
+        <div class="col-sm-3 col-md-3 text-center">
+            <div class="thumbnail">
+                <img src="" alt="Published By" title="Published By">
+                <div class="caption">
+                    <h4>Published by</h4>
+                    <p>International Forum of Educational Technology &amp; Society</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3 col-md-3 text-center">
+            <div class="thumbnail">
+                <img src="" alt="Bibliographic Information" title="Bibliographic Information">
+                <div class="caption">
+                    <h4>Bibliographic Information</h4>
+                    <p>ISSN: 1436-4522 (online) and 1176-3647 (print)</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3 col-md-3 text-center">
+            <div class="thumbnail">
+                <img src="" alt="Abstracting/ Indexing" title="Abstracting/ Indexing">
+                <div class="caption">
+                    <h4>Abstracting/ Indexing</h4>
+                    <p>Get an overview of <a href="">abstracting/ indexing information</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-3 col-md-3 text-center">
+            <div class="thumbnail">
+                <img src="" alt="Authors Guidelines" title="Authors Guidelines">
+                <div class="caption">
+                    <h4>Authors Guidelines</h4>
+                    <p>If you are interesting in submitting a manuscript, please follow the journal's <a href="#">authors guidelines</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-12">
+        <div class="customTable">
+            <h4><font color="#18627A" size="3px">Latest Announcements</font></h4>
+            <div class="announc">
+                <h5>(**New Extended Deadline**) Special Issue CfP: Learning Analytics in Technology Enhanced Language Learning</h5>
+                Posted on <b>08-March-2016</b><a href="" class="viewfull">View this post in full <img src="" alt="link"></a>
+            </div>
+            <div class="announc">
+                <h5>Special Issue CFP: "'How' to design, implement and evaluate the flipped classroom?"</h5>
+                Posted on <b>11-August-2015</b>
+                <a href="" class="viewfull">View this post in full <img src="#" alt="link"></a></div>
+            <div class="announc"><h5>(New Extended Deadline) Special Issue CFP: “Intelligent and Affective Learning Environments: New Trends and Challenges”</h5>
+                Posted on <b>05-May-2015</b><a href="" class="viewfull">View this post in full <img src="" alt="link"></a>
+            </div>
+            <a href="#" class="viewfull"><b>View all Announcements</b><img src="" alt="link"></a>
+        </div>
+    </div><!-- /row -->
+</div>
