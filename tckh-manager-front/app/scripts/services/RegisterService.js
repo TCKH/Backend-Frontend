@@ -9,12 +9,14 @@
         .module('appManager')
         .factory('RegisterService', RegisterService);
 
-    RegisterService.$inject = ['$http', '$rootScope', 'config'];
-    function RegisterService($http, $rootScope, config) {
+    RegisterService.$inject = ['$http', '$rootScope', 'config', '$cookieStore'];
+    function RegisterService($http, $rootScope, config, $cookieStore) {
         var service = {};
 
         service.Register = Register;
         service.Login = Login;
+        service.SetCredentials = SetCredentials;
+        service.ClearCredentials = ClearCredentials;
         return service;
 
         function Register(registerInfo, callback) {
@@ -30,21 +32,21 @@
                 .success(function (response) {
                     callback(response);
                 });
-            /*$http({
-                method: 'GET',
-                url: config.backEndUrl + 'login',
-                headers: {
-                    'Content-Type': undefined
-                },
-                data: {
-                    username: loginInfo.username,
-                    password: loginInfo.password
+        }
+        function ClearCredentials() {
+            $rootScope.globals = undefined;
+            $cookieStore.remove('globals');
+            /*$http.defaults.headers.common.Authorization = '';*/
+        }
+        function SetCredentials(user) {
+            $rootScope.globals = {
+                currentUser: {
+                    username: user.username
                 }
-            }).then(function successCallback(response) {
-                callback = response;
-            }, function errorCallback(response) {
+            };
+            $cookieStore.put('globals', $rootScope.globals);
+            /*$http.defaults.headers.common['Authorization'] = username + ' ' + token;*/ // jshint ignore:line
 
-            });*/
         }
     }
 })();

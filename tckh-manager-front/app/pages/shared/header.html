@@ -19,7 +19,7 @@
                         <a href="" class="dropdown-toggle" data-toggle="dropdown">Author's Information <b class="caret"></b></a>
                         <ul class="dropdown-menu">
                             <li><a ng-href="#guideline">Authors' Guidelines</a></li>
-                            <li><a ng-href="#login">Submit your Paper</a></li>
+                            <li ng-show="!globals"><a ng-href="#login">Submit your Paper</a></li>
                             <li><a ng-href="#status">Track your Paper</a></li>
                         </ul>
                     </li>
@@ -62,11 +62,20 @@
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
-                    <li ng-if="checkLogin">
-                        <a ng-href="">{{userInfo.username}}</a>
+                    <li ng-show="!globals">
+                        <a ng-href="#login">Author's Login</a>
                     </li>
-                    <li ng-if="!checkLogin">
-                        <a ng-href="#submit">Author's Login</a>
+                    <li ng-show="globals" class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">
+                            <span class="glyphicon glyphicon-user"></span>
+                            {{globals.currentUser.username}}
+                            <span class="caret"></span></a>
+                        <ul class="dropdown-menu dropdown-user">
+                            <li><a href="" ng-click="logout()"><span class="glyphicon glyphicon-off"></span>
+                                Logout</a>
+                            </li>
+                        </ul>
                     </li>
                 </ul>
             </div><!--/.nav-collapse -->

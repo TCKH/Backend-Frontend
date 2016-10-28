@@ -1,5 +1,5 @@
 (function () {
-    var app = angular.module('appManager', ['ngRoute','ngResource','textAngular']);
+    var app = angular.module('appManager', ['ngRoute','ngResource','textAngular','ngCookies']);
     // Constants
     app.constant('config', {
         backEndUrl: 'http://localhost:8080/TCKH/',
@@ -115,13 +115,16 @@
                 .otherwise({redirectTo: '/'});
 
         }]);
-    app.run(['$window', '$rootScope', '$location', '$http',  'config',
-        function ($window, $rootScope, $location, $http, config) {
+    app.run(['$window', '$rootScope', '$location', '$http',  'config', 'RegisterService','$cookieStore',
+        function ($window, $rootScope, $location, $http, config, RegisterService,$cookieStore) {
             $rootScope.author = {
                 username: "",
                 password: ""
             };
-            $rootScope.checkLogin = false;
-            $rootScope.userInfo = {};
+            $rootScope.globals = $cookieStore.get('globals');
+            $rootScope.logout = function () {
+                RegisterService.ClearCredentials();
+                $location.path('/login');
+            }
         }]);
 }())
