@@ -2,6 +2,8 @@ package net.codejava.spring.config;
 
 import javax.sql.DataSource;
 
+import net.codejava.spring.dao.CategoryDAO;
+import net.codejava.spring.dao.CategoryDAOImpl;
 import net.codejava.spring.dao.ContactDAO;
 import net.codejava.spring.dao.ContactDAOImpl;
 import net.codejava.spring.dao.PostDAO;
@@ -59,5 +61,9 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
 	@Bean
 	public UserDAO getUserDAO(){
 		return new UserDAOImpl(getDataSource());
+	}
+	@Bean
+	public CategoryDAO getCategoryDAO(){
+		return new CategoryDAOImpl(getDataSource());
 	}
 }

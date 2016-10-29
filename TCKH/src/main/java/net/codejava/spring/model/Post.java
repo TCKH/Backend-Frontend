@@ -2,21 +2,23 @@ package net.codejava.spring.model;
 
 public class Post {
 	private int id;
-	private String title;
+	private String name;
+	private String image;
 	private String content;
-	private String comment;
-	private String abstracts;
-	private String highlights;
+	private String createTime;
+	private int categoryId;
+	private String usernameId;
 
 	public Post() {
 	}
 
-	public Post(String title, String content, String comment, String abstracts, String highlights) {
-		this.title = title;
+	public Post(String name, String image, String content, String createTime, int categoryId, String usernameId) {
+		this.name = name;
 		this.content = content;
-		this.comment = comment;
-		this.abstracts = abstracts;
-		this.highlights = highlights;
+		this.image = image;
+		this.createTime = createTime;
+		this.categoryId = categoryId;
+		this.usernameId = usernameId;
 	}
 
 	public int getId() {
@@ -27,12 +29,12 @@ public class Post {
 		this.id = id;
 	}
 
-	public String getTitle() {
-		return title;
+	public String getName() {
+		return name;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getContent() {
@@ -43,26 +45,33 @@ public class Post {
 		this.content = content;
 	}
 
-	public String getComment() {
-		return comment;
+	public String getImage() {
+		return image;
 	}
 
-	public void setComment(String comment) {
-		this.comment = comment;
+	public void setImage(String image) {
+		this.image = image;
 	}
-	public String getAbstracts() {
-		return abstracts;
-	}
-
-	public void setAbstracts(String abstracts) {
-		this.abstracts = abstracts;
-	}
-	public String getHighlights() {
-		return highlights;
+	public String getCreateTime() {
+		return createTime;
 	}
 
-	public void setHighlights(String highlights) {
-		this.highlights = highlights;
+	public void setCreateTime(String createTime) {
+		this.createTime = createTime;
+	}
+	public String getUsernameId() {
+		return usernameId;
+	}
+
+	public void setUsernameId(String usernameId) {
+		this.usernameId = usernameId;
+	}
+	public int getCateloryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(int categoryId) {
+		this.categoryId = categoryId;
 	}
 
 
