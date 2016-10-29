@@ -6,36 +6,39 @@
     <div>
         <div class="row">
             <div class="col-md-8 col-xs-8" style="left: 16%;">
-                <form id="register-form" ng-submit="vm.register()" method="post" class="form-horizontal" role="form">
+                <div class="row alert alert-danger fix-dialog-bottom"
+                     ng-show="vm.Error">
+                    <a href="" class="close" ng-click="vm.Error=false">&times;</a>
+                    <p class="text-center">You can't leave empty</p>
+                    <span></span>
+                </div>
+                <form id="form-post" ng-submit="vm.postArticle()" method="post" class="form-horizontal" role="form">
                     <div class="form-group">
-                        <label class="col-md-12" for="category">Category list:</label>
+                        <h3 class="col-md-12"> Category list</h3>
                         <div class="col-md-3">
-                            <select class="form-control" id="category">
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
+                            <select class="form-control" id="category" name="category" ng-model="vm.category">
+                                <option ng-repeat="x in vm.listCategory track by x.id" value="{{x.id}}">{{x.name}}</option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-md-12">
-                            <input type="text" ng-model="vm.name" required
-                                   class="form-control required" name="name" placeholder="Title article">
+                            <input type="text" ng-model="vm.name"
+                                   class="form-control" name="name" placeholder="Title article">
                         </div>
+                    </div>
+                    <div class="col-md-12 no-padding">
+                        <h3>Choose image</h3>
+                        <media-preview preview-class="img-thumbnail" preview-container="mediaHere" multiple></media-preview>
                     </div>
                     <div class="form-group">
                         <div class="col-md-12">
-                            <h3>Editor</h3>
-                            <div text-angular="text-angular" name="htmlcontent" ng-model="htmlcontent" ta-disabled='disabled'></div>
-                        </div>
-                        <div role="alert">
-                              <span class="error" ng-show="register-form.name.$error.required">
-                               Required!</span>
+                            <h3>Content</h3>
+                            <div text-angular="text-angular" name="content" ng-model="vm.content" ta-disabled='disabled'></div>
                         </div>
                     </div>
                     <div class="form-group text-center col-md-12">
-                        <button type="submit" name="submit_author" class="btn btn-success">Sign Up</button>
+                        <button type="submit" name="submit_author" class="btn btn-success">Save</button>
                     </div>
                 </form>
             </div>

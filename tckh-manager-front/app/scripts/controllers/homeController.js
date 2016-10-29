@@ -9,12 +9,36 @@
 
     var HomeController = function ($scope, $rootScope, $location, $timeout, config, HomeService) {
         var vm = this;
+        vm.allArticle = [];
         HomeService.LoadData(loginSuccessCallback);
         function loginSuccessCallback(response) {
-            vm.dataPost = response;
+            vm.allArticle = response;
         }
-        vm.downloadFile = function () {
-            window.open("data/main.pdf");
+        vm.viewArticle = function (id) {
+            var dataObj = {
+                id: id
+            }
+            HomeService.GetArticle(dataObj,function (data) {
+                $rootScope.viewArticle = data;
+                $location.path("/view");
+            })
+        }
+        vm.editArticle = function (articleId) {
+            var dataObj = {
+                id: articleId
+            }
+            HomeService.GetArticle(dataObj,function (data) {
+                $rootScope.viewArticle = data;
+                $location.path("/post-article");
+            })
+        }
+        vm.deleteArticle = function (articleId) {
+            var dataObj = {
+                id: articleId
+            }
+            HomeService.DeleteArticle(dataObj,function (data) {
+                vm.allArticle = data;
+            })
         }
     };
     HomeController.$inject = injectParams;

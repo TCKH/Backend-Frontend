@@ -8,6 +8,8 @@
 
     var ArticlesController = function ($scope, $rootScope, $location, $timeout, config) {
         var vm = this;
+
+
     };
     ArticlesController.$inject = injectParams;
     angular.module('appManager')

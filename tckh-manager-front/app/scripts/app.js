@@ -1,8 +1,8 @@
 (function () {
-    var app = angular.module('appManager', ['ngRoute','ngResource','textAngular','ngCookies']);
+    var app = angular.module('appManager', ['ngRoute','ngResource','textAngular','ngCookies', 'angular-media-preview','ngSanitize']);
     // Constants
     app.constant('config', {
-        backEndUrl: 'http://localhost:8080/TCKH/',
+        backEndUrl: 'http://localhost:8080/SpringMvcJdbcTemplate/',
         Title: {
 
         },
@@ -112,6 +112,11 @@
                     templateUrl: viewBase + 'articles/post_articles.html',
                     controllerAs: 'vm'
                 })
+                .when('/view',{
+                    controller: 'ViewController',
+                    templateUrl: viewBase + 'issues/view.html',
+                    controllerAs: 'vm'
+                })
                 .otherwise({redirectTo: '/'});
 
         }]);
@@ -121,6 +126,7 @@
                 username: "",
                 password: ""
             };
+            $rootScope.viewArticle = [];
             $rootScope.globals = $cookieStore.get('globals');
             $rootScope.logout = function () {
                 RegisterService.ClearCredentials();

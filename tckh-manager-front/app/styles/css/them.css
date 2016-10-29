@@ -1029,3 +1029,12 @@ input.required:focus{
 .login-div button{
     margin-top:10px;
 }
+
+.no-padding{
+    padding-left: 0px;
+    padding-right: 0px;
+}
+.media-container {
+    margin-bottom: 20px;
+    text-align: left;
+}
