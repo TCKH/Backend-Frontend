@@ -3,11 +3,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>net.codejava.spring</groupId>
-	<artifactId>SpringMvcJdbcTemplate</artifactId>
+	<artifactId>TCKH</artifactId>
 	<version>1.0</version>
 	<packaging>war</packaging>
 
-	<name>SpringMvcJdbcTemplate</name>
+	<name>TCKH</name>
 	<url>http://maven.apache.org</url>
 
 	<properties>
@@ -87,7 +87,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>SpringMvcJdbcTemplate</finalName>
+		<finalName>TCKH</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
