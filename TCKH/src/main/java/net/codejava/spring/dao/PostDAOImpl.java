@@ -36,7 +36,7 @@ public class PostDAOImpl implements PostDAO {
 		} else {
 			// insert
 			String sql = "INSERT INTO articles (name, image, content, createTime,categoryId,usernameId)"
-						+ " VALUES (?, ?, ?, ?, ?, ?)";
+						+ " VALUES (?, ?, ?, ?, ?)";
 			jdbcTemplate.update(sql, post.getName(), post.getImage(),
 					post.getContent(), post.getCreateTime(), post.getCateloryId(), post.getUsernameId());
 		}

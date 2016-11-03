@@ -26,10 +26,10 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public void insert(User user) {
-		String sql = "INSERT INTO users (username, password, lastname, firstname, email)"
-				+ " VALUES (?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO users (username, password, lastname, firstname, email, usertype)"
+				+ " VALUES (?, ?, ?, ?, ?, ?)";
 		jdbcTemplate.update(sql, user.getUsername(), user.getPassword(),
-			user.getLastname(), user.getFirstname(), user.getEmail());
+			user.getLastname(), user.getFirstname(), user.getEmail(), user.getUserType());
 		/*if (user.getUsername().length() > 0) {
 			// update
 			String sql = "UPDATE users SET username=?, password=?, lastname=?, "
