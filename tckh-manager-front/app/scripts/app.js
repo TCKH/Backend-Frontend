@@ -1,5 +1,6 @@
 (function () {
-    var app = angular.module('appManager', ['ngRoute','ngResource','textAngular','ngCookies', 'angular-media-preview','ngSanitize']);
+    var app = angular.module('appManager', ['ngRoute','ngResource','textAngular','ngCookies', 'angular-media-preview',
+        'ngFileUpload','ngSanitize']);
     // Constants
     app.constant('config', {
         backEndUrl: 'http://localhost:8080/SpringMvcJdbcTemplate/',
@@ -126,6 +127,7 @@
                 username: "",
                 password: ""
             };
+            $rootScope.Article = [];
             $rootScope.viewArticle = [];
             $rootScope.globals = $cookieStore.get('globals');
             $rootScope.logout = function () {

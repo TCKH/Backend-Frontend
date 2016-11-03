@@ -13,6 +13,14 @@
                 </div>
                 <form id="register-form" ng-submit="vm.register()" method="post" class="form-horizontal" role="form">
                     <div class="form-group">
+                        <h3 class="col-md-12">User Type:</h3>
+                        <div class="col-md-3">
+                            <select class="form-control" id="category" name="category" ng-model="vm.category">
+                                <option ng-repeat="x in vm.listCategory track by x.id" value="{{x.name}}">{{x.name}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
                         <div class="col-md-12">
                             <input type="text" ng-model="vm.firstname" required
                                    class="form-control required" name="firstname" placeholder="First name">

@@ -28,7 +28,7 @@
                 id: articleId
             }
             HomeService.GetArticle(dataObj,function (data) {
-                $rootScope.viewArticle = data;
+                $rootScope.Article = data;
                 $location.path("/post-article");
             })
         }
