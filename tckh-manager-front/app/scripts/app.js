@@ -3,7 +3,7 @@
         'ngFileUpload','ngSanitize']);
     // Constants
     app.constant('config', {
-        backEndUrl: 'http://localhost:8080/SpringMvcJdbcTemplate/',
+        backEndUrl: 'http://localhost:8080/TCKH/',
         Title: {
 
         },

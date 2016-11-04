@@ -11,21 +11,39 @@
         vm.listCategory = [];
         vm.Error = false;
         vm.postArticle = function () {
-            Upload.upload({
-                url: config.backEndUrl + 'upload',
-                data: {username: $scope.username, file: file},
-            });
-            console.log(vm.file)
-            /*HomeService.SaveArticle(article, function (data) {
-                if(data){
-                    $location.path("/");
-                }else {
-                    vm.Error = true;
-                    $timeout(function () {
-                        vm.Error = false;
-                    },10000)
-                }
-            })*/
+            vm.upload(vm.file);
+        }
+        vm.upload = function (file) {
+            var article = {
+                name: file.name,
+                keyword: vm.keyword,
+                title: vm.title,
+                nameAuthor: vm.nameAuthor,
+                lastModified: file.lastModified.toString(),
+                usernameId:  $rootScope.globals.currentUser.username
+            }
+            console.log(article)
+            if(article){
+                HomeService.SaveArticle(article, function (data) {
+                    if(data){
+                        Upload.upload({
+                            url: 'upload',
+                            data: {file: file}
+                        }).then(function (resp) {
+                            console.log(resp);
+                        }, function (resp) {
+
+                        });
+                        $location.path("/");
+                    }else {
+                        vm.Error = true;
+                        $timeout(function () {
+                            vm.Error = false;
+                        },10000)
+                    }
+                })
+            }
+
         }
     };
     PostController.$inject = injectParams;
