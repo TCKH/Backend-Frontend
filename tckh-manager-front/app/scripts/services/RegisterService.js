@@ -12,13 +12,26 @@
     RegisterService.$inject = ['$http', '$rootScope', 'config', '$cookieStore'];
     function RegisterService($http, $rootScope, config, $cookieStore) {
         var service = {};
-
+        service.DeleteUser = DeleteUser;
+        service.EditUser = EditUser;
         service.Register = Register;
         service.Login = Login;
         service.SetCredentials = SetCredentials;
         service.ClearCredentials = ClearCredentials;
         return service;
+        function EditUser(user, callback) {
+            $http.post(config.backEndUrl + 'editUser',user)
+                .success(function (response) {
+                    callback(response);
+                });
+        }
 
+        function DeleteUser(user, callback) {
+            $http.post(config.backEndUrl + 'deleteUser',user)
+                .success(function (response) {
+                    callback(response);
+                });
+        }
         function Register(registerInfo, callback) {
             /* Use this for real authentication
              ----------------------------------------------*/
@@ -36,16 +49,20 @@
         function ClearCredentials() {
             $rootScope.globals = undefined;
             $cookieStore.remove('globals');
-            /*$http.defaults.headers.common.Authorization = '';*/
+            $http.defaults.headers.common.Authorization = '';
         }
         function SetCredentials(user) {
             $rootScope.globals = {
                 currentUser: {
-                    username: user.username
+                    username: user.username,
+                    userType: user.userType,
+                    token: user.token,
+                    money: user.money
                 }
             };
+            console.log($rootScope.globals.currentUser)
             $cookieStore.put('globals', $rootScope.globals);
-            /*$http.defaults.headers.common['Authorization'] = username + ' ' + token;*/ // jshint ignore:line
+            $http.defaults.headers.common['Authorization'] = user.username + ' ' + user.token; // jshint ignore:line
 
         }
     }

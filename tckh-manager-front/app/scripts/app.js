@@ -1,9 +1,9 @@
 (function () {
     var app = angular.module('appManager', ['ngRoute','ngResource','textAngular','ngCookies', 'angular-media-preview',
-        'ngFileUpload','ngSanitize']);
+        'ngFileUpload','ngSanitize','ngTable']);
     // Constants
     app.constant('config', {
-        backEndUrl: 'http://localhost:8080/TCKH/',
+        backEndUrl: 'http://localhost:8080/SpringMvcJdbcTemplate/',
         Title: {
 
         },
@@ -123,11 +123,27 @@
         }]);
     app.run(['$window', '$rootScope', '$location', '$http',  'config', 'RegisterService','$cookieStore',
         function ($window, $rootScope, $location, $http, config, RegisterService,$cookieStore) {
+
+           /* $rootScope.globals = $cookieStore.get('globals') || {};
+            if ($rootScope.globals.currentUser) {
+                $http.defaults.headers.common['Authorization'] = $rootScope.globals.currentUser.username + ' ' + $rootScope.globals.currentUser.token; // jshint ignore:line
+            }
+            $rootScope.$on('$locationChangeStart', function (event, next, current) {
+                // redirect to login page if not logged in and trying to access a restricted page
+                var restrictedPage = $.inArray($location.path(), ['/login']) === -1;
+                var loggedIn = $rootScope.globals.currentUser;
+                if (restrictedPage && !loggedIn) {
+                    $location.path('/login');
+                }
+                if ($rootScope.interval) {
+                    clearInterval($rootScope.interval);
+                }
+            });*/
             $rootScope.author = {
                 username: "",
                 password: ""
             };
-            $rootScope.Article = [];
+            $rootScope.Article = {};
             $rootScope.viewArticle = [];
             $rootScope.globals = $cookieStore.get('globals');
             $rootScope.logout = function () {

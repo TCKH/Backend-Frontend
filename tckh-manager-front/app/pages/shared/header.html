@@ -18,7 +18,7 @@
                     <li class="dropdown {MENU_AUTH_INFO}">
                         <a href="" class="dropdown-toggle" data-toggle="dropdown">Author's Information <b class="caret"></b></a>
                         <ul class="dropdown-menu">
-                            <li><a ng-href="#guideline">Authors' Guidelines</a></li>
+                            <li ng-show="globals && globals.currentUser.username == 'admin'"><a ng-href="#guideline">User Information</a></li>
                             <li ng-show="!globals"><a ng-href="#login">Submit your Paper</a></li>
                             <li><a ng-href="#status">Track your Paper</a></li>
                         </ul>
@@ -33,7 +33,7 @@
                     </li>
                     <li class="{MENU_SP_ISSUE}"><a ng-href="#special">Special Issues</a></li>
                     <li class="{ANNOUNC}"><a ng-href="#new">Announcements</a></li>
-                    <li class="{TOP_TEN}"><a ng-href="#top-article">Top 10 Articles</a></li>
+                    <li class="{TOP_TEN}" ng-show="globals.currentUser.userType == 'TAC GIA'"><a ng-href="#post-article">New Article</a></li>
                     <li class="dropdown">
                         <a href="" data-toggle="dropdown" class="openTabNav dropdown-toggle">Search <b class="caret"></b></a>
                         <ul class="dropdown-menu openNav">

@@ -12,7 +12,7 @@
                     <p class="text-center">You can't leave empty</p>
                     <span></span>
                 </div>
-                <form id="form-post" ng-submit="vm.postArticle()" method="post" class="form-horizontal" role="form">
+                <form id="form-post" ng-submit="vm.postArticle()" enctype="multipart/form-data" method="post" class="form-horizontal" role="form">
 
                     <div class="form-group">
                         <div class="col-md-12">
@@ -45,31 +45,40 @@
                         </div>
                     </div>
                     <div class="col-md-12 no-padding">
-                        <h3>Choose file PDF</h3>
                         <div class="col-md-6 no-padding">
-                            <input type="file" class="btn btn-primary" ngf-select ng-model="vm.file" name="file" ngf-pattern="'application/pdf'"
-                                   ngf-accept="'application/pdf'" ngf-max-size="10MB" required
-                                   ngf-model-invalid="errorFile">
+                            <input class="inline-block btn btn-primary" type="file" name="file" ng-model="vm.file" data-rule-required="true" id="file"
+                                   accept="application/pdf">
                             <div role="alert">
                               <span class="error" ng-show="form-post.file.$error.required">
                                Required!</span>
                             </div>
                         </div>
                         <div class="col-md-6">
-                            <button class="btn btn-danger" ng-click="vm.File = null" ng-show="vm.File">Remove</button>
+                            <button class="btn btn-danger" ng-click="vm.file = null" ng-show="vm.file">Remove</button>
                         </div>
-                        <!--<media-preview preview-class="img-thumbnail" preview-container="mediaHere" multiple></media-preview>-->
+
                     </div>
-                   <!-- <div class="form-group">
-                        <div class="col-md-12">
-                            <h3>Content</h3>
-                            <div text-angular="text-angular" name="content" ng-model="vm.content" ta-disabled='disabled'></div>
-                        </div>
-                    </div>-->
                     <div class="form-group text-center col-md-12" style="margin-top: 20px">
                         <button type="submit" name="submit_author" class="btn btn-success">Save</button>
                     </div>
                 </form>
+               <!-- <form method="post" id="fromFileUpload" enctype="multipart/form-data"
+                      ng-submit="vm.continueFileUpload()">
+                    <div class="form-group">
+                        <label class="control-label col-sm-4 col-xs-12" for="file">Please upload the file : <span class="required">*</span> </label>
+                        <div class="col-xs-4 input-max controls ">
+                            <input class="inline-block" type="file" name="file" ng-model="file" data-rule-required="true" id="file"
+                                   accept="application/pdf">
+                        </div>
+                    </div>
+                    <div class="box-header">
+                        <div class="actions">
+                            <button type="submit" class="btn btn-primary">
+                                <i class="icon-arrow-right"></i> Continue
+                            </button>
+                        </div>
+                    </div>
+                </form>-->
             </div>
         </div>
     </div><!-- /row -->

@@ -4,36 +4,46 @@
 (function () {
     'use strict';
 
-    var injectParams = ['$scope', '$rootScope', '$location', '$timeout', 'config', 'HomeService', 'Upload'];
+    var injectParams = ['$q','$scope', '$rootScope', '$location', '$timeout', 'config', 'HomeService', '$http'];
 
-    var PostController = function ($scope, $rootScope, $location, $timeout, config, HomeService, Upload) {
+    var PostController = function ($q, $scope, $rootScope, $location, $timeout, config, HomeService, $http) {
         var vm = this;
-        vm.listCategory = [];
         vm.Error = false;
-        vm.postArticle = function () {
-            vm.upload(vm.file);
+        if($rootScope.globals === undefined){
+            $location.path('/login');
         }
-        vm.upload = function (file) {
+        if(!jQuery.isEmptyObject($rootScope.Article)){
+            vm.keyword = $rootScope.Article.keyword;
+            vm.title = $rootScope.Article.title;
+            vm.nameAuthor = $rootScope.Article.nameAuthor;
+        }
+        vm.postArticle = function () {
+            var uploadUrl= config.backEndUrl + "continueFileUpload";
+            var formData=new FormData();
+            formData.append("file",file.files[0]);
             var article = {
-                name: file.name,
+                name: file.files[0].name,
                 keyword: vm.keyword,
                 title: vm.title,
                 nameAuthor: vm.nameAuthor,
-                lastModified: file.lastModified.toString(),
+                size: file.files[0].size,
+                lastModified: file.files[0].lastModified.toString(),
                 usernameId:  $rootScope.globals.currentUser.username
             }
-            console.log(article)
+            if(!jQuery.isEmptyObject($rootScope.Article)){
+                article.id = $rootScope.Article.id;
+            }
             if(article){
                 HomeService.SaveArticle(article, function (data) {
                     if(data){
-                        Upload.upload({
-                            url: 'upload',
-                            data: {file: file}
-                        }).then(function (resp) {
-                            console.log(resp);
-                        }, function (resp) {
-
-                        });
+                        $http({
+                            method: 'POST',
+                            url: uploadUrl,
+                            headers: {'Content-Type': undefined},
+                            data: formData
+                        }).success(function(data) {
+                            console.log(data);
+                        })
                         $location.path("/");
                     }else {
                         vm.Error = true;
@@ -43,7 +53,6 @@
                     }
                 })
             }
-
         }
     };
     PostController.$inject = injectParams;

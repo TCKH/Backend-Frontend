@@ -28,7 +28,9 @@ a:hover{
     color:#6A9FB1;
     text-decoration:underline;
 }
-
+.modal-open .modal{
+    z-index: 2000;
+}
 .theme-dropdown .dropdown-menu {
     position: static;
     display: block;

@@ -11,16 +11,35 @@
     function HomeService($http, $rootScope, config) {
         var service = {};
         service.LoadData = LoadData;
+        service.LoadListUsers = LoadListUsers;
+        service.LoadUserType = LoadUserType;
         service.ListCategory = ListCategory;
         service.SaveArticle = SaveArticle;
         service.GetArticle = GetArticle;
         service.DeleteArticle = DeleteArticle;
+        service.Upload = Upload;
         return service;
 
         function LoadData(callback) {
             /* Use this for real authentication
              ----------------------------------------------*/
             $http.get(config.backEndUrl + "ListArticle")
+                .success(function (response) {
+                    callback(response);
+                });
+        }
+        function LoadListUsers(callback) {
+            /* Use this for real authentication
+             ----------------------------------------------*/
+            $http.get(config.backEndUrl + "ListUsers")
+                .success(function (response) {
+                    callback(response);
+                });
+        }
+        function LoadUserType(callback) {
+            /* Use this for real authentication
+             ----------------------------------------------*/
+            $http.get(config.backEndUrl + "UserType")
                 .success(function (response) {
                     callback(response);
                 });
@@ -51,6 +70,21 @@
                 .success(function (response) {
                     callback(response);
                 });
+        }
+        function Upload(file, callback) {
+            $http({
+                method: 'POST',
+                url: config.backEndUrl + 'upload',
+                data: file,
+                headers: { 'Content-Type': 'multipart/form-data'}
+            },function (response) {
+                    callback(response);
+                }
+            );
+            /*$http.post(config.backEndUrl + 'upload',file)
+                .success(function (response) {
+                    callback(response);
+                });*/
         }
     }
 })();
