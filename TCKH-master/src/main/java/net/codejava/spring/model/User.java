@@ -7,18 +7,23 @@ public class User {
 	private String lastname;
 	private String email;
 	private String usertype;
+	private String token;
+	private String money;
 	
 	
 	public User(){
 		
 	}
-	public User(String username, String password, String firstname, String lastname,String email, String usertype) {
+	public User(String username, String password, String firstname, String lastname,
+			String email, String usertype, String token, String money) {
 		this.username = username;
 		this.email = email;
 		this.password = password;
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.usertype = usertype;
+		this.token = token;
+		this.money = money;
 	}
 
 	public String getUsername() {
@@ -67,4 +72,17 @@ public class User {
 	public void setUserType(String usertype) {
 		this.usertype = usertype;
 	}
+	public String getToken() {
+		return token;
+	}
+	public void setToken(String token) {
+		this.token = token;
+	}
+	public String getMoney() {
+		return money;
+	}
+	public void setMoney(String money) {
+		this.money = money;
+	}
+	
 }

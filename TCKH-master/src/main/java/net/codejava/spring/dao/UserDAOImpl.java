@@ -2,13 +2,15 @@ package net.codejava.spring.dao;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import javax.sql.DataSource;
+import java.util.List;
 
+import javax.sql.DataSource;
 import net.codejava.spring.model.User;
 
 import org.springframework.dao.DataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.ResultSetExtractor;
+import org.springframework.jdbc.core.RowMapper;
 
 
 /**
@@ -26,24 +28,43 @@ public class UserDAOImpl implements UserDAO {
 
 	@Override
 	public void insert(User user) {
-		String sql = "INSERT INTO users (username, password, lastname, firstname, email, usertype)"
-				+ " VALUES (?, ?, ?, ?, ?, ?)";
+		// insert
+		String sql = "INSERT INTO users (username, password, lastname, firstname, email, usertype, token, money)"
+				+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 		jdbcTemplate.update(sql, user.getUsername(), user.getPassword(),
-			user.getLastname(), user.getFirstname(), user.getEmail(), user.getUserType());
-		/*if (user.getUsername().length() > 0) {
-			// update
-			String sql = "UPDATE users SET username=?, password=?, lastname=?, "
-						+ "firstname=?, email=? WHERE username=?";
-			jdbcTemplate.update(sql, user.getUsername(), user.getPassword(),
-					user.getLastname(), user.getFirstname(), user.getEmail(), user.getUsername());
-		} else {
-			// insert
-			String sql = "INSERT INTO users (username, password, lastname, firstname, email)"
-						+ " VALUES (?, ?, ?, ?, ?)";
-			jdbcTemplate.update(sql, user.getUsername(), user.getPassword(),
-					user.getLastname(), user.getFirstname(), user.getEmail());
-		}
-	*/
+			user.getLastname(), user.getFirstname(), user.getEmail(), user.getUserType(), user.getToken(), user.getMoney());
+	}
+	@Override
+	public void update(User user) {
+		// update
+		String sql = "UPDATE users SET username=?, password=?, lastname=?, "
+					+ "firstname=?, email=?, usertype=?, token=?, money=? WHERE username=?";
+		jdbcTemplate.update(sql, user.getUsername(), user.getPassword(),
+				user.getLastname(), user.getFirstname(), user.getEmail(),
+				user.getUserType() ,user.getToken(), user.getMoney(), user.getUsername());
+	}
+	@Override
+	public List<User> list() {
+		String sql = "SELECT * FROM users";
+		List<User> listUser = jdbcTemplate.query(sql, new RowMapper<User>() {
+
+			@Override
+			public User mapRow(ResultSet rs, int rowNum) throws SQLException {
+				User aUser = new User();
+				aUser.setUsername(rs.getString("username"));
+				aUser.setPassword(rs.getString("password"));
+				aUser.setEmail(rs.getString("email"));
+				aUser.setLastname(rs.getString("lastname"));
+				aUser.setFirstname(rs.getString("firstname"));
+				aUser.setUserType(rs.getString("usertype"));
+				aUser.setToken(rs.getString("token"));
+				aUser.setMoney(rs.getString("money"));
+				return aUser;
+			}
+			
+		});
+		
+		return listUser;
 	}
 	@Override
 	public User get(String userName) {
@@ -60,6 +81,9 @@ public class UserDAOImpl implements UserDAO {
 					user.setEmail(rs.getString("email"));
 					user.setLastname(rs.getString("lastname"));
 					user.setFirstname(rs.getString("firstname"));
+					user.setUserType(rs.getString("usertype"));
+					user.setToken(rs.getString("token"));
+					user.setMoney(rs.getString("money"));
 					return user;
 				}
 				
@@ -67,6 +91,11 @@ public class UserDAOImpl implements UserDAO {
 			}
 			
 		});
+	}
+	@Override
+	public void delete(String username) {
+		String sql = "DELETE FROM users WHERE username=?";
+		jdbcTemplate.update(sql, username);
 	}
 
 }

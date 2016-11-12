@@ -29,16 +29,17 @@ public class PostDAOImpl implements PostDAO {
 		if (post.getId() > 0) {
 			// update
 			String sql = "UPDATE articles SET name=?, keyword=?, title=?, "
-						+ "lastModified=?, usernameId=?, nameAuthor=? WHERE id=?";
+						+ "lastModified=?, usernameId=?, nameAuthor=?, size=?, reviewer=?, comment=? WHERE id=?";
 			jdbcTemplate.update(sql, post.getName(), post.getKeyword(),
 					post.getTitle(), post.getLastModified(), post.getUsernameId(), 
-					post.getNameAuthor(), post.getId());
+					post.getNameAuthor(), post.getSize(), post.getReviewer(), post.getComment(), post.getId());
 		} else {
 			// insert
-			String sql = "INSERT INTO articles (name, keyword, title, usernameId,lastModified,nameAuthor)"
-						+ " VALUES (?, ?, ?, ?, ?, ?)";
+			String sql = "INSERT INTO articles (name, keyword, title, usernameId,lastModified,nameAuthor,size,reviewer,comment)"
+						+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			jdbcTemplate.update(sql, post.getName(), post.getKeyword(),
-					post.getTitle(), post.getUsernameId(), post.getLastModified(), post.getNameAuthor());
+					post.getTitle(), post.getUsernameId(), post.getLastModified(), post.getNameAuthor(), 
+					post.getSize(), post.getReviewer(), post.getComment());
 		}
 		
 	}
@@ -59,7 +60,9 @@ public class PostDAOImpl implements PostDAO {
 				aPost.setUsernameId(rs.getString("usernameId"));
 				aPost.setLastModified(rs.getString("lastModified"));
 				aPost.setNameAuthor(rs.getString("nameAuthor"));
-				
+				aPost.setSize(rs.getDouble("size"));
+				aPost.setReviewer(rs.getString("reviewer"));
+				aPost.setComment(rs.getString("comment"));
 				return aPost;
 			}
 			
@@ -84,6 +87,9 @@ public class PostDAOImpl implements PostDAO {
 					post.setUsernameId(rs.getString("usernameId"));
 					post.setLastModified(rs.getString("lastModified"));
 					post.setNameAuthor(rs.getString("nameAuthor"));
+					post.setSize(rs.getDouble("size"));
+					post.setReviewer(rs.getString("reviewer"));
+					post.setComment(rs.getString("comment"));
 					return post;
 				}
 				

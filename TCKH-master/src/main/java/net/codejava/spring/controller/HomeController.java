@@ -2,21 +2,22 @@ package net.codejava.spring.controller;
 
 import net.codejava.spring.dao.PostDAO;
 import net.codejava.spring.model.Post;
-
-import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 /**
  * This controller routes accesses to the application to the appropriate
@@ -29,6 +30,7 @@ public class HomeController {
 
 	@Autowired
 	private PostDAO postDAO;
+	private static String UPLOAD_LOCATION="F:/Backend-Frontend/tckh-manager-front/app/data/";
 
 	@RequestMapping(value="/ListArticle", method = RequestMethod.GET, produces = "application/json")
 	public @ResponseBody List<Post> ListArticle() throws IOException{
@@ -52,25 +54,29 @@ public class HomeController {
 		List<Post> listArticle = postDAO.list();
 		return listArticle;
 	}
-	@RequestMapping(value = "/upload", method = RequestMethod.POST)
-    public @ResponseBody String upload(@RequestParam("file") MultipartFile file ) throws IOException {
-        String fileName = null;
-        if (!file.isEmpty()) {
-            try {
-                fileName = file.getOriginalFilename();
-                byte[] bytes = file.getBytes();
-                File newFile = new File("D:\\test\\" + fileName);
-                BufferedOutputStream buffStream = 
-                        new BufferedOutputStream(new FileOutputStream(newFile));
-                buffStream.write(bytes);
-                buffStream.close();
-                return "You have successfully uploaded " + fileName;
-            } catch (Exception e) {
-                return "You failed to upload " + fileName + ": " + e.getMessage();
+	@RequestMapping(value = "/continueFileUpload", method = RequestMethod.POST)
+    @ResponseBody
+    public String continueFileUpload(HttpServletRequest request,
+            HttpServletResponse response){
+     MultipartHttpServletRequest mRequest;
+        try {
+            mRequest = (MultipartHttpServletRequest) request;
+            mRequest.getParameterMap();
+            Iterator<String> itr = mRequest.getFileNames();
+            while (itr.hasNext()) {
+            	
+                MultipartFile mFile = mRequest.getFile(itr.next());
+                FileCopyUtils.copy(mFile.getBytes(), new File(UPLOAD_LOCATION + mFile.getOriginalFilename()));
+                String fileName = mFile.getOriginalFilename();
+                System.out.println(fileName);
+                return fileName;
             }
-        } else {
-            return "Unable to upload. File is empty.";
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.println("fail");
+            return "fail";
         }
+        return null;
     }
-	
+
 }
