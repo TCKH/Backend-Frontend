@@ -145,6 +145,7 @@
             };
             $rootScope.Article = {};
             $rootScope.viewArticle = [];
+            $rootScope.viewCommentId = 0;
             $rootScope.globals = $cookieStore.get('globals');
             $rootScope.logout = function () {
                 RegisterService.ClearCredentials();

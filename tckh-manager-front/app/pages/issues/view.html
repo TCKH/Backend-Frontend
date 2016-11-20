@@ -1,7 +1,17 @@
 <div id="mainContainer" class="container">
     <div class="page-header">
-        <h1 class="blue">{{viewArticle.name}}</h1>
+        <h1 class="blue">All comment</h1>
     </div>
-    <div ng-bind-html="vm.renderHtml(viewArticle.content)">
-    </div><!-- /row -->
+    <div class="col-md-12">
+        <table ng-table="vm.listComment" class="table table-condensed table-bordered table-striped">
+            <tr ng-repeat="comment in $data">
+                <td data-title="'ArticleId'" filter="{articleId: 'number'}" sortable="'articleId'">{{comment.articleId}}</td>
+                <td data-title="'Title'" filter="{title: 'text'}" sortable="'title'">{{comment.title}}</td>
+                <td data-title="'Content'" filter="{content: 'text'}" sortable="'content'">{{comment.content}}</td>
+                <td data-title="'Date'" filter="{date: 'text'}" sortable="'date'">{{comment.date}}</td>
+                <td data-title="'Type'" filter="{type: 'text'}" sortable="'type'">{{comment.type}}</td>
+                <td data-title="'Version'" filter="{version: 'number'}" sortable="'version'">{{comment.version}}</td>
+            </tr>
+        </table>
+    </div>
 </div>

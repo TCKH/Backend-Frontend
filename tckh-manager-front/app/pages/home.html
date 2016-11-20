@@ -8,63 +8,56 @@
         <p class="text-center">Please pay to be download and view article!! </p>
         <span></span>
     </div>
+    <div class="row alert alert-success fix-dialog-bottom"
+         ng-show="vm.success">
+        <a href="" class="close" ng-click="vm.success=false">&times;</a>
+        <p class="text-center">Save successful!! </p>
+        <span></span>
+    </div>
     <div>
-        <div class="panel panel-default issTable" ng-show="globals.currentUser.userType !== 'PHAN BIEN'">
-            <div class="table-responsive singleIssue">
+        <div class="panel panel-default issTable" ng-show="globals.currentUser.username !== 'admin'">
+            <div class="table-responsive singleIssue" ng-show="globals.currentUser.userType !== 'PHAN BIEN'">
                 <table class="table">
                     <thead>
-                        <tr>
-                            <th>All Articles</th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
+                    <tr>
+                        <th>All Articles</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="article in vm.allArticle" class="col-md-12">
-                        <td class="col-sm-8 detRow">
+                    <tr ng-repeat="article in vm.listArticle" class="col-md-12">
+                        <td class="col-sm-9 detRow">
                             <p class="issDetails title" style="cursor:pointer">{{article.title}}</p>
                             <p class="issDetails editor">
                                 <strong><i>Author:</i></strong>&nbsp;{{article.nameAuthor}}<br></p>
                             <p class="issDetails editor">
                                 <strong><i>Created:</i></strong>&nbsp;{{article.lastModified | date:'yyyy-MM-dd HH:mm:ss Z'}}<br></p>
-                            <p class="issDetails editor" style="white-space: nowrap;width: 30em;overflow: hidden;text-overflow: ellipsis;">
-                                <strong><i>Comment:</i></strong>&nbsp;{{article.comment}}<br></p>
+                            <p class="issDetails editor">Comment:
+                                <a ng-click="vm.viewComment(article.id)" style="cursor:pointer">
+                                    <span class="glyphicon glyphicon-comment"></span>
+                                </a>
+                            </p>
                         </td>
 
                         <td class="col-md-1">
                             <p>{{article.keyword}}</p>
                         </td>
-                        <td class="col-md-1"  ng-show="globals">
-                            <a href="" ng-click="vm.viewPDF(article.name)">
+                        <td class="col-md-1">
+                            <a href="data/{{article.name}}" target="pdf-frame">
                                 <img src="styles/images/icon_pdf.png">
                             </a>
                             <span class="filesize">[{{vm.convertedSize[article.id]}}]</span>
                         </td>
-                        <td ng-show="globals.currentUser.username === 'admin'" class="col-md-2">
-                            <button class="btn btn-primary" ng-click="vm.editArticle(article.id)">Edit</button>
-                            <button class="btn btn-danger" ng-click="vm.deleteArticle(article.id)">Delete</button>
-                            <div class="col-md-12">
-                                <label for="repeatSelect{{article.id}}"> Reviewer: </label>
-                                <select name="repeatSelect" class="form-control" style="margin-top: 10px" id="repeatSelect{{article.id}}"
-                                    ng-model="vm.reviewerSelect[article.id]">
-                                    <option ng-repeat="option in vm.reviewer">{{option.username}}</option>
-                                </select>
-                            </div>
+                        <td ng-show="globals.currentUser.userType === 'BIEN TAP VIEN'" class="col-md-1">
+                            <button class="btn btn-primary" ng-click="vm.editArticle(article.id)">Upload</button>
                         </td>
                     </tr>
                     </tbody>
                 </table>
-
             </div>
-            <div class="col-md-12 text-center" ng-show="globals.currentUser.username === 'admin' && vm.reviewerSelect" style="margin-top: 20px">
-                <button type="button" ng-click="vm.saveReviewerSelect()" class="btn-lg btn-primary">
-                    Save
-                </button>
-            </div>
-        </div>
-        <div class="panel panel-default issTable" ng-show="globals.currentUser.userType === 'PHAN BIEN'">
-            <div class="table-responsive singleIssue">
+            <div class="table-responsive singleIssue" ng-show="globals.currentUser.userType === 'PHAN BIEN'">
                 <table class="table">
                     <thead>
                     <tr>
@@ -82,8 +75,11 @@
                                 <strong><i>Author:</i></strong>&nbsp;{{article.nameAuthor}}<br></p>
                             <p class="issDetails editor">
                                 <strong><i>Created:</i></strong>&nbsp;{{article.lastModified | date:'yyyy-MM-dd HH:mm:ss Z'}}<br></p>
-                            <p class="issDetails editor" style="white-space: nowrap;width: 30em;overflow: hidden;text-overflow: ellipsis;">
-                                <strong><i>Comment:</i></strong>&nbsp;{{article.comment}}<br></p>
+                            <p class="issDetails editor">Comment:
+                                <a ng-click="vm.viewComment(article.id)" style="cursor:pointer">
+                                    <span class="glyphicon glyphicon-comment"></span>
+                                </a>
+                            </p>
                         </td>
 
                         <td class="col-md-1">
@@ -105,6 +101,71 @@
                 </table>
             </div>
         </div>
+        <div class="panel panel-default issTable" ng-show="globals.currentUser.username === 'admin'">
+            <div class="table-responsive singleIssue">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>All Articles</th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="article in vm.allArticle" class="col-md-12">
+                        <td class="col-sm-8 detRow">
+                            <p class="issDetails title" style="cursor:pointer">{{article.title}}</p>
+                            <p class="issDetails editor">
+                                <strong><i>Author:</i></strong>&nbsp;{{article.nameAuthor}}<br></p>
+                            <p class="issDetails editor">
+                                <strong><i>Created:</i></strong>&nbsp;{{article.lastModified | date:'yyyy-MM-dd HH:mm:ss Z'}}<br></p>
+                            <p class="issDetails editor">Comment:
+                                <a ng-click="vm.viewComment(article.id)" style="cursor:pointer">
+                                    <span class="glyphicon glyphicon-comment"></span>
+                                </a>
+                            </p>
+                        </td>
+
+                        <td class="col-md-1">
+                            <p>{{article.keyword}}</p>
+                        </td>
+                        <td class="col-md-1"  ng-show="globals">
+                            <a href="" ng-click="vm.viewPDF(article.name)">
+                                <img src="styles/images/icon_pdf.png">
+                            </a>
+                            <span class="filesize">[{{vm.convertedSize[article.id]}}]</span>
+                        </td>
+                        <td ng-show="globals.currentUser.username === 'admin'" class="col-md-2">
+                            <button class="btn btn-primary" ng-click="vm.editArticle(article.id)">Edit</button>
+                            <button class="btn btn-danger" ng-click="vm.deleteArticle(article.id)">Delete</button>
+                            <div class="col-md-12">
+                                <label for="repeatSelect{{article.id}}"> Reviewer: </label>
+                                <select name="repeatSelect" class="form-control" style="margin-top: 5px" id="repeatSelect{{article.id}}"
+                                    ng-model="vm.reviewerSelect[article.id]">
+                                    <option ng-repeat="option in vm.reviewer">{{option.username}}</option>
+                                </select>
+                            </div>
+                            <div class="col-md-12">
+                                <label for="acceptSelect{{article.id}}"> Accept : </label>
+                                <select name="acceptSelect" class="form-control" style="margin-top: 5px" id="acceptSelect{{article.id}}"
+                                        ng-model="vm.acceptSelect[article.id]">
+                                    <option value="true">true</option>
+                                    <option value="false">false</option>
+                                </select>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <div class="col-md-12 text-center" ng-show="globals.currentUser.username === 'admin' && vm.reviewerSelect" style="margin-top: 20px">
+                <button type="button" ng-click="vm.saveReviewerSelect()" class="btn-lg btn-primary">
+                    Save
+                </button>
+            </div>
+        </div>
     </div>
 </div>
 <!-- Modal -->
@@ -119,9 +180,60 @@
             </div>
             <div class="modal-body">
                 <form id="formComment" ng-submit="vm.commentSubmit()">
-                    <label for="comment">Comment:</label>
-                    <textarea class="form-control" ng-model="vm.comment" rows="5" id="comment"></textarea>
-                    <div class="text-center" style="margin-top: 10px;">
+                    <div class="form-group">
+                        <div class="col-md-12" style="margin-bottom: 15px;">
+                            <input type="text" ng-model="vm.title" required
+                                   class="form-control" name="title" placeholder="Title comment">
+                            <div role="alert">
+                              <span class="error" ng-show="form-post.title.$error.required">
+                               Required!</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12" style="margin-bottom: 15px;">
+                            <input type="text" ng-model="vm.type" required
+                                   class="form-control" name="type" placeholder="Type article">
+                            <div role="alert">
+                              <span class="error" ng-show="form-post.type.$error.required">
+                               Required!</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12" style="margin-bottom: 15px;">
+                            <textarea class="form-control" ng-model="vm.content" rows="5" id="content"
+                                      name="content" placeholder="Content comment" required>
+
+                            </textarea>
+                            <div role="alert">
+                              <span class="error" ng-show="form-post.content.$error.required">
+                               Required!</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <label class="control-label col-md-3">
+                                Version article
+                            </label>
+                            <div class="col-md-3" style="margin-bottom: 15px;">
+                                <input type="number" ng-model="vm.version" required
+                                       class="form-control" min="1" name="version" placeholder="">
+                                <div role="alert">
+                              <span class="error" ng-show="form-post.version.$error.required">
+                               Required!</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <button class="btn btn-danger" ng-click="vm.file = null" ng-show="vm.file">Remove</button>
+                        </div>
+                    </div>
+
+                    <div class="text-center">
                         <button type="submit" class="btn btn-primary">Save</button>
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>

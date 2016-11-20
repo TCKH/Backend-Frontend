@@ -18,7 +18,21 @@
         service.GetArticle = GetArticle;
         service.DeleteArticle = DeleteArticle;
         service.Upload = Upload;
+        service.SaveComment = SaveComment;
+        service.LoadComment = LoadComment;
         return service;
+        function LoadComment(callback) {
+            $http.get(config.backEndUrl + "ListComment")
+                .success(function (response) {
+                    callback(response);
+                });
+        }
+        function SaveComment(comment, callback) {
+            $http.post(config.backEndUrl + 'NewComment',comment)
+                .success(function (response) {
+                    callback(response);
+                });
+        }
 
         function LoadData(callback) {
             /* Use this for real authentication

@@ -4,12 +4,20 @@
 (function () {
     'use strict';
 
-    var injectParams = ['$scope', '$rootScope', '$location', '$timeout', 'config','$sce'];
+    var injectParams = ['$scope', '$rootScope', '$location', '$timeout', 'config','HomeService', 'NgTableParams'];
 
-    var ViewController = function ($scope, $rootScope, $location, $timeout, config, $sce) {
+    var ViewController = function ($scope, $rootScope, $location, $timeout, config, HomeService, NgTableParams) {
         var vm = this;
-        vm.renderHtml = function (htmlCode) {
-            return $sce.trustAsHtml(htmlCode);
+        vm.list = [];
+        vm.listComment = [];
+        HomeService.LoadComment(loginSuccessCallback);
+        function loginSuccessCallback(response) {
+            response.forEach(function (comment) {
+                if(comment.articleId == $rootScope.viewCommentId){
+                    vm.list.push(comment);
+                }
+            })
+            vm.listComment =  new NgTableParams({}, { dataset: vm.list});
         }
     };
     ViewController.$inject = injectParams;

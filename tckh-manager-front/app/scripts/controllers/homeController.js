@@ -11,7 +11,11 @@
         var vm = this;
         vm.allArticle = [];
         vm.msgError = false;
+        vm.success = false;
         vm.articleReviewer = [];
+        vm.reviewerSelect = [];
+        vm.acceptSelect = [];
+        vm.listArticle = [];
         vm.reviewer = [
 
         ];
@@ -19,6 +23,10 @@
         HomeService.LoadData(loginSuccessCallback);
         function loginSuccessCallback(response) {
             vm.allArticle = response;
+            vm.allArticle.forEach(function (res) {
+                vm.reviewerSelect[res.id] = res.reviewer;
+                vm.acceptSelect[res.id] = res.accept;
+            })
             vm.convertedSize = [];
             vm.byte = [];
             for(var i = 0; i < vm.allArticle.length; i++){
@@ -32,6 +40,9 @@
                 }
                 if($rootScope.globals !== undefined && vm.allArticle[i].reviewer === $rootScope.globals.currentUser.username){
                     vm.articleReviewer.push(vm.allArticle[i]);
+                }
+                if(vm.allArticle[i].accept == 'true'){
+                    vm.listArticle.push(vm.allArticle[i]);
                 }
 
             }
@@ -47,10 +58,21 @@
         }
         vm.commentSubmit =function () {
             $("#modalComment").modal('hide');
-            vm.articleComment.comment = vm.comment;
-            HomeService.SaveArticle(vm.articleComment, function (response) {
-                console.log(response);
-            })
+            var comment = {
+                articleId: vm.articleComment.id,
+                version: vm.version,
+                content: vm.content,
+                title: vm.title,
+                type: vm.type,
+                date: new Date().toString()
+            }
+            console.log(comment);
+            if(comment){
+                HomeService.SaveComment(comment, function (response) {
+                    console.log(response);
+                })
+            }
+
 
         }
         HomeService.LoadUserType(UserType);
@@ -82,8 +104,16 @@
                 }else {
                     data.reviewer = null;
                 }
+                if(vm.acceptSelect[data.id] !== undefined){
+                    data.accept = vm.acceptSelect[data.id];
+                }else {
+                    data.accept = null;
+                }
                 HomeService.SaveArticle(data, function (response) {
-                    console.log(response);
+                    vm.success = true;
+                    $timeout(function () {
+                        vm.success = false;
+                    },5000)
                 })
 
             })
@@ -129,6 +159,11 @@
             HomeService.DeleteArticle(dataObj,function (data) {
                 vm.allArticle = data;
             })
+        }
+        vm.viewComment = function (id) {
+            $rootScope.viewCommentId = id;
+            console.log(id);
+            $location.path("/view");
         }
     };
     HomeController.$inject = injectParams;
