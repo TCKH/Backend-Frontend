@@ -10,11 +10,11 @@ public class Post {
 	private String nameAuthor;
 	private Double size;
 	private String reviewer;
-	private String comment;
+	private String accept;
 	public Post() {
 	}
 	public Post(String name, String title, String keyword, String lastModified, 
-			String usernameId, String nameAuthor, Double size, String reviewer, String comment) {
+			String usernameId, String nameAuthor, Double size, String reviewer, String accept) {
 		this.name = name;
 		this.keyword = keyword;
 		this.title = title;
@@ -23,7 +23,7 @@ public class Post {
 		this.nameAuthor = nameAuthor;
 		this.size = size;
 		this.reviewer = reviewer;
-		this.comment = comment;
+		this.accept = accept;
 		
 	}
 	public int getId() {
@@ -88,11 +88,11 @@ public class Post {
 	public void setReviewer(String reviewer) {
 		this.reviewer = reviewer;
 	}
-	public String getComment() {
-		return comment;
+	public String getAccept() {
+		return accept;
 	}
-	public void setComment(String comment) {
-		this.comment = comment;
+	public void setAccept(String accept) {
+		this.accept = accept;
 	}
 
 }

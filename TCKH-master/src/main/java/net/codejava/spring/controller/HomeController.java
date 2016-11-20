@@ -1,7 +1,10 @@
 package net.codejava.spring.controller;
 
+import net.codejava.spring.dao.CommentDAO;
 import net.codejava.spring.dao.PostDAO;
 import net.codejava.spring.model.Post;
+import net.codejava.spring.model.Comment;
+
 import java.io.File;
 import java.io.IOException;
 import java.util.Iterator;
@@ -30,17 +33,34 @@ public class HomeController {
 
 	@Autowired
 	private PostDAO postDAO;
+	@Autowired
+	private CommentDAO commentDAO;
 	private static String UPLOAD_LOCATION="F:/Backend-Frontend/tckh-manager-front/app/data/";
 
+	@RequestMapping(value="/ListComment", method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody List<Comment> ListComment() throws IOException{
+		List<Comment> listComment = commentDAO.list();
+		return listComment;
+	}
 	@RequestMapping(value="/ListArticle", method = RequestMethod.GET, produces = "application/json")
 	public @ResponseBody List<Post> ListArticle() throws IOException{
 		List<Post> listArticle = postDAO.list();
 		return listArticle;
 	}
-	
 	@RequestMapping(value = "/NewArticle", method = RequestMethod.POST)
 	public @ResponseBody Boolean newArticle(@RequestBody Post post) {
 		postDAO.saveOrUpdate(post);
+		return true;
+	}
+	@RequestMapping(value = "/NewComment", method = RequestMethod.POST)
+	public @ResponseBody Boolean NewComment(@RequestBody Comment comment) {
+		System.out.println(comment.getArticleId());
+		System.out.println(comment.getContent());
+		System.out.println(comment.getDate());
+		System.out.println(comment.getType());
+		System.out.println(comment.getTitle());
+		System.out.println(comment.getVersion());
+		commentDAO.saveOrUpdate(comment);
 		return true;
 	}
 	@RequestMapping(value = "/GetArticle", method = RequestMethod.POST)
