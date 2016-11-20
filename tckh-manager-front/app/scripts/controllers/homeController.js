@@ -5,9 +5,9 @@
 (function () {
     'use strict';
 
-    var injectParams = ['$scope', '$rootScope', '$location', '$timeout', 'config','HomeService', '$window'];
+    var injectParams = ['$scope', '$rootScope', '$location', '$timeout', 'config','HomeService', '$window', '$http'];
 
-    var HomeController = function ($scope, $rootScope, $location, $timeout, config, HomeService, $window) {
+    var HomeController = function ($scope, $rootScope, $location, $timeout, config, HomeService, $window, $http) {
         var vm = this;
         vm.allArticle = [];
         vm.msgError = false;
@@ -58,17 +58,29 @@
         }
         vm.commentSubmit =function () {
             $("#modalComment").modal('hide');
+            var uploadUrl= config.backEndUrl + "continueFileUpload";
+            var formData=new FormData();
+            formData.append("file",file.files[0]);
             var comment = {
                 articleId: vm.articleComment.id,
                 version: vm.version,
                 content: vm.content,
                 title: vm.title,
                 type: vm.type,
-                date: new Date().toString()
+                date: new Date().toString(),
+                fileName: file.files[0].name
             }
             console.log(comment);
             if(comment){
                 HomeService.SaveComment(comment, function (response) {
+                    $http({
+                        method: 'POST',
+                        url: uploadUrl,
+                        headers: {'Content-Type': undefined},
+                        data: formData
+                    }).success(function(data) {
+                        console.log(data);
+                    })
                     console.log(response);
                 })
             }

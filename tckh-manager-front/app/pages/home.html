@@ -213,7 +213,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-md-12">
+                        <div class="col-md-12" style="margin-bottom: 15px;">
                             <label class="control-label col-md-3">
                                 Version article
                             </label>
@@ -228,8 +228,18 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <div class="col-md-12">
-                            <button class="btn btn-danger" ng-click="vm.file = null" ng-show="vm.file">Remove</button>
+                        <div class="col-md-12" style="margin-bottom: 15px;">
+                            <div class="col-md-6 no-padding">
+                                <input class="inline-block btn btn-primary" type="file" name="file" ng-model="vm.file" data-rule-required="true" id="file"
+                                       accept="application/pdf">
+                                <div role="alert">
+                              <span class="error" ng-show="form-post.file.$error.required">
+                               Required!</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <button class="btn btn-danger" ng-click="vm.file = null" ng-show="vm.file">Remove</button>
+                            </div>
                         </div>
                     </div>
 

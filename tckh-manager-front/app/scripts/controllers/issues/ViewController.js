@@ -17,6 +17,7 @@
                     vm.list.push(comment);
                 }
             })
+            console.log(vm.list)
             vm.listComment =  new NgTableParams({}, { dataset: vm.list});
         }
     };

@@ -11,6 +11,11 @@
                 <td data-title="'Date'" filter="{date: 'text'}" sortable="'date'">{{comment.date}}</td>
                 <td data-title="'Type'" filter="{type: 'text'}" sortable="'type'">{{comment.type}}</td>
                 <td data-title="'Version'" filter="{version: 'number'}" sortable="'version'">{{comment.version}}</td>
+                <td data-target="'File'">
+                    <a href="data/{{comment.fileName}}" target="pdf-frame" ng-show="comment.fileName != ''">
+                        <img src="styles/images/icon_pdf.png">
+                    </a>
+                </td>
             </tr>
         </table>
     </div>
