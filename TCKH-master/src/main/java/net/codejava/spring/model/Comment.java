@@ -73,6 +73,6 @@ public class Comment {
 		return fileName;
 	}
 	public void setFileName(String fileName) {
-		this.date = fileName;
+		this.fileName = fileName;
 	}
 }

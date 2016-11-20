@@ -54,12 +54,7 @@ public class HomeController {
 	}
 	@RequestMapping(value = "/NewComment", method = RequestMethod.POST)
 	public @ResponseBody Boolean NewComment(@RequestBody Comment comment) {
-		System.out.println(comment.getArticleId());
-		System.out.println(comment.getContent());
-		System.out.println(comment.getDate());
-		System.out.println(comment.getType());
-		System.out.println(comment.getTitle());
-		System.out.println(comment.getVersion());
+		System.out.println(comment.getFileName());
 		commentDAO.saveOrUpdate(comment);
 		return true;
 	}
