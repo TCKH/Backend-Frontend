@@ -16,9 +16,8 @@
         vm.reviewerSelect = [];
         vm.acceptSelect = [];
         vm.listArticle = [];
-        vm.reviewer = [
-
-        ];
+        vm.reviewer = [];
+        vm.userReviewer = [];
         $rootScope.Article = {};
         HomeService.LoadData(loginSuccessCallback);
         function loginSuccessCallback(response) {
@@ -96,6 +95,20 @@
                         username: article.username
                     };
                     vm.reviewer.push(vm.obj);
+                    vm.userReviewer.push(article);
+
+                }
+            })
+        }
+        vm.sendEmail = function (article) {
+            vm.userReviewer.forEach(function (data) {
+                if(article.reviewer == data.username){
+                    var link = "mailto:"+data.email+""
+                            + "?cc=tapchikhoahoc@gmail.com"
+                            + "&subject=" + escape("Reviewer required")
+                            + "&body=" + escape("Press link this website http://localhost/tckh-front/#/ to accept review for articles.")
+                        ;
+                    window.location.href = link;
                 }
             })
         }

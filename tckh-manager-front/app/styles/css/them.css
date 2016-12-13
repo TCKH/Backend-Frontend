@@ -15,7 +15,7 @@ html {
 body {
     /* Margin bottom by footer height */
     margin-bottom: 60px;
-    background-color:#d6eff6;
+    background-color: #eaeaea;
     font-family: 'Source Sans Pro', sans-serif;
     font-size: 14px;
 }
@@ -28,6 +28,7 @@ a:hover{
     color:#6A9FB1;
     text-decoration:underline;
 }
+
 .modal-open .modal{
     z-index: 2000;
 }
@@ -76,10 +77,10 @@ h1, .h1, h2, .h2, h3, .h3{
     background: rgb(77,122,140); /* Old browsers */
     background: -moz-linear-gradient(top,  rgba(77,122,140,1) 0%, rgba(12,82,104,1) 100%); /* FF3.6+ */
     background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(77,122,140,1)), color-stop(100%,rgba(12,82,104,1))); /* Chrome,Safari4+ */
-    background: -webkit-linear-gradient(top,  rgba(77,122,140,1) 0%,rgba(12,82,104,1) 100%); /* Chrome10+,Safari5.1+ */
-    background: -o-linear-gradient(top,  rgba(77,122,140,1) 0%,rgba(12,82,104,1) 100%); /* Opera 11.10+ */
-    background: -ms-linear-gradient(top,  rgba(77,122,140,1) 0%,rgba(12,82,104,1) 100%); /* IE10+ */
-    background: linear-gradient(to bottom,  rgba(77,122,140,1) 0%,rgba(12,82,104,1) 100%); /* W3C */
+    background: -webkit-linear-gradient(top,  rgb(99, 108, 111) 0%,rgb(76, 90, 79) 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top,  rgb(99, 108, 111) 0%,rgb(76, 90, 79) 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top,  rgb(99, 108, 111) 0%,rgb(76, 90, 79) 100%); /* IE10+ */
+    background: linear-gradient(to bottom,  rgb(99, 108, 111) 0%,rgb(76, 90, 79) 100%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4d7a8c', endColorstr='#0c5268',GradientType=0 ); /* IE6-9 */
 
 }
@@ -406,7 +407,7 @@ p.blue{
 }
 
 .issTable .singleIssue thead{
-    background-color: #18627a;
+    background-color: #515e56;
     color:#efefef;
 }
 
@@ -793,7 +794,7 @@ p.blue{
     position: absolute;
     bottom: 0;
     width: 100%;
-    background-color: #0c5268;
+    background-color: #515e56;
     font-size:12px;
     padding:8px 0;
 }

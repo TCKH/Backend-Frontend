@@ -1,22 +1,24 @@
 <div id="mainContainer" class="container">
     <div class="page-header">
-        <h1 class="blue">TOC Alerting Service</h1>
+        <h1 class="blue">TOP dịch vụ</h1>
     </div>
     <div>
 
-        <p>This form allows you to either activate or cancel delivery of table of contents alerts for Educational Technology &amp; Society Journal.</p>
-        <p>To confirm your identity and prevent third parties from activating or cancelling alerts without your knowledge, an e-mail message with a confirmation code will be sent to the address you specify in the form. Simply wait for this message to arrive, then follow the instructions to confirm either operation.</p>
+        <p>Trang này cho phép bạn kích hoạt hoặc hủy hoặc phân phối các bảng nội dung cảnh báo cho trang web quản lý khoa học</p>
+        <p>
+            305/5000
+            Để xác nhận danh tính của bạn và ngăn chặn các bên thứ ba từ kích hoạt hoặc hủy bỏ cảnh báo mà bạn không biết, một thông báo e-mail với một mã số xác nhận sẽ được gửi đến địa chỉ mà bạn chỉ định trong biểu mẫu. Đơn giản chỉ cần chờ đợi cho thông điệp này đến, sau đó làm theo các hướng dẫn để xác nhận một trong hai hoạt động.</p>
         <form id="toc" action="toc_subscribe.php" method="post" class="form-horizontal" role="form" name="tocForm">
             <div class="form-group">
-                <label for="inputFirstname" class="col-sm-2 control-label">First Name (*):</label>
+                <label for="inputFirstname" class="col-sm-2 control-label">Họ và tên đệm (*):</label>
                 <div class="col-sm-4">
-                    <input type="text" class="form-control input-sm" id="inputFirstname" placeholder="First Name" name="fname" required="">
+                    <input type="text" class="form-control input-sm" id="inputFirstname" placeholder="Họ và tên đệm" name="fname" required="">
                 </div>
             </div>
             <div class="form-group">
-                <label for="inputLastname" class="col-sm-2 control-label">Last Name (*):</label>
+                <label for="inputLastname" class="col-sm-2 control-label">Tên người dùng (*):</label>
                 <div class="col-sm-4">
-                    <input type="text" class="form-control input-sm" id="inputLastname" placeholder="Last Name" name="lname" required="">
+                    <input type="text" class="form-control input-sm" id="inputLastname" placeholder="Tên người dùng" name="lname" required="">
                 </div>
             </div>
             <div class="form-group">
@@ -25,15 +27,15 @@
                     <input type="email" class="form-control input-sm" id="inputEmail" placeholder="Email" name="mail" required="">
                 </div>
             </div>
-            <p><i>(*) Mandatory Fields</i></p>
-            <p>Select TOC Format:</p>
+            <p><i>(*) Các trường bắt buộc</i></p>
+            <p>Chọn TOP dịch vụ:</p>
             <div class="form-group">
                 <div class="col-sm-10">
                     <label class="radio-inline">
-                        <input name="toc_format" type="radio" value="0" checked=""><b>HTML format</b>
+                        <input name="toc_format" type="radio" value="0" checked=""><b>Tùy chỉnh HTML</b>
                     </label>
                     <label class="radio-inline">
-                        <input name="toc_format" type="radio" value="1"><b>ASCII (plain text)</b>
+                        <input name="toc_format" type="radio" value="1"><b>ASCII (văn bản)</b>
                     </label>
                 </div>
             </div>

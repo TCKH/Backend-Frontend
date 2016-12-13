@@ -1,38 +1,38 @@
 <div id="mainContainer" class="container w850">
     <div class="page-header">
-        <h1 class="blue">Authors' Login Area</h1>
+        <h1 class="blue">Trang đăng nhập</h1>
     </div>
     <div>
-        <div class="alert alert-warning"><b>You need to login before uploading your paper.</b></div>
+        <div class="alert alert-warning"><b>Bạn cần đăng nhập trước khi muốn đăng bài</b></div>
         <form id="authLog" ng-submit="vm.login()" method="post" class="form-inline" role="form">
             <div class="col-md-6 col-md-offset-3 alert alert-danger fix-dialog-bottom"
                  ng-show="vm.error">
                 <a href="" class="close" ng-click="vm.error=false">&times;</a>
-                <p class="text-center">Incorrect username or password.</p>
+                <p class="text-center">Tên đăng nhập hoặc mật khẩu chưa đúng</p>
                 <span></span>
             </div>
             <div class="form-group">
                 <div class="input-group col-md-6 col-md-offset-3">
                     <div class="input-group-addon">
-                        <img src="styles/images/userlabel.png" alt="Username" title="Username" class="img-label">
+                        <img src="styles/images/userlabel.png" alt="Username" title="Tên đăng nhập" class="img-label">
                     </div>
-                    <input type="text" class="form-control"  ng-model="vm.username" name="UName" placeholder="Username">
+                    <input type="text" class="form-control"  ng-model="vm.username" name="UName" placeholder="Tên đăng nhập">
                 </div>
             </div>
             <div class="form-group">
                 <div class="input-group col-md-6 col-md-offset-3">
                     <div class="input-group-addon">
-                        <img src="styles/images/passlabel.png" alt="Password" title="Password" class="img-label">
+                        <img src="styles/images/passlabel.png" alt="Password" title="Mật khẩu" class="img-label">
                     </div>
-                    <input type="password" class="form-control" ng-model="vm.password" name="Passw" placeholder="Password">
+                    <input type="password" class="form-control" ng-model="vm.password" name="Passw" placeholder="Mật khẩu">
                 </div>
             </div>
             <div class="login-div input-group col-md-6 col-md-offset-3">
-                <button type="submit" name="Auth_Login" class="btn btn-success">Login</button>
+                <button type="submit" name="Auth_Login" class="btn btn-success">Đăng nhập</button>
             </div>
             <div class="well well-sm text-center">
-                <p class="lead"><img src="styles/images/questionmark.png" alt="questionmark" title="Sign Up">Don't have an account?
-                    <a ng-href="#register" title="Author Sign Up"><strong>Sign up now</strong>!</a>
+                <p class="lead"><img src="styles/images/questionmark.png" alt="questionmark" title="Sign Up">Bạn chưa có tài khoản?
+                    <a ng-href="#register" title="Author Sign Up"><strong>Đăng ký ngay</strong>!</a>
                 </p>
             </div>
         </form>

@@ -1,6 +1,6 @@
 <div id="mainContainer" class="container">
     <div class="page-header">
-        <h1 class="blue">User Information</h1>
+        <h1 class="blue">Thông tin tài khoản</h1>
     </div>
     <div class="col-md-12">
         <table ng-table="vm.listUser" class="table table-condensed table-bordered table-striped">
@@ -11,10 +11,10 @@
                 <td data-title="'User Type'" filter="{userType: 'text'}" sortable="'userType'">{{user.userType}}</td>
                 <td data-title="''">
                     <button class="btn btn-primary" ng-click="vm.editUser(user)">
-                        Edit
+                        Chỉnh sửa
                     </button>
                     <button class="btn btn-danger" ng-click="vm.deleteUser(user)">
-                        Delete
+                        Xóa
                     </button>
                 </td>
             </tr>
@@ -27,25 +27,25 @@
 
         <!-- Modal content-->
         <div class="modal-content">
-            <div class="modal-header" style="background: #18627a;color: #fff;">
+            <div class="modal-header" style="background: #515e56;color: #fff;">
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
-                <h4 class="modal-title">Edit User</h4>
+                <h4 class="modal-title">Chỉnh sửa tài khoản</h4>
             </div>
             <div class="modal-body">
                 <form id="formComment" ng-submit="vm.editSubmit()">
                     <div class="col-md-12">
                         <div class="form-group">
-                            <label class="col-md-2 no-padding" style="margin-top: 5px;">User Type:</label>
+                            <label class="col-md-2 no-padding" style="margin-top: 5px;">Vai trò:</label>
                             <div class="col-md-4">
                                 <select class="form-control" id="category" name="category" ng-model="vm.category">
                                     <option ng-repeat="x in vm.listCategory track by x.id" value="{{x.name}}">{{x.name}}</option>
                                 </select>
                             </div>
-                            <label class="col-md-2 no-padding" style="margin-top: 5px;" ng-show="vm.category == 'DOC GIA'">Payment:</label>
+                            <label class="col-md-2 no-padding" style="margin-top: 5px;" ng-show="vm.category == 'DOC GIA'">Trả tiền:</label>
                             <div class="col-md-4" ng-show="vm.category == 'DOC GIA'">
                                 <select class="form-control" id="payment" name="payment" ng-model="vm.money">
-                                    <option value="false">No</option>
-                                    <option value="true">Yes</option>
+                                    <option value="false">Không</option>
+                                    <option value="true">Có</option>
                                 </select>
                             </div>
                         </div>
@@ -53,21 +53,21 @@
                     <div class="form-group">
                         <div class="col-md-12" style="margin-top: 15px;">
                             <input type="text" ng-model="vm.firstname" required
-                                   class="form-control required" name="firstname" placeholder="First name">
+                                   class="form-control required" name="firstname" placeholder="Họ và tên lót">
                             <div role="alert">
                               <span class="error" ng-show="register-form.firstname.$error.required">
-                               Required!</span>
+                               Yêu cầu nhập!</span>
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-md-12" style="margin-top: 15px;">
                             <input type="text" ng-model="vm.lastname" required
-                                   class="form-control required" name="lastname" placeholder="Last name">
+                                   class="form-control required" name="lastname" placeholder="Tên người dùng">
                         </div>
                         <div role="alert">
                               <span class="error" ng-show="register-form.lastname.$error.required">
-                               Required!</span>
+                               Yêu cầu nhập!</span>
                         </div>
                     </div>
                     <div class="form-group">
@@ -77,16 +77,16 @@
                         </div>
                         <div role="alert">
                               <span class="error" ng-show="register-form.email.$error.required">
-                               Required!</span>
+                               Yêu cầu nhập!</span>
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="col-md-12" style="margin-top: 15px;">
                             <input type="type" ng-model="vm.username" readonly="readonly" required
-                                   class="form-control required" name="username" placeholder="Username">
+                                   class="form-control required" name="username" placeholder="Tên đăng nhập">
                             <div role="alert">
                               <span class="error" ng-show="register-form.username.$error.required">
-                               Required!</span>
+                               Yêu cầu nhập!</span>
                             </div>
                         </div>
                     </div>
@@ -96,20 +96,20 @@
                                    class="form-control required" name="password" placeholder="Password">
                             <div role="alert">
                                 <span class="error" ng-show="register-form.password.$error.minlength">
-                                    Too short!</span>
+                                    Mật khẩu quá ngắn!</span>
                                 <span class="error" ng-show="register-form.password.$error.maxlength">
-                                    Too long!</span>
+                                    Mật khẩu quá dài!</span>
                                 <span class="error" ng-show="register-form.password.$error.required">
-                                    Required!</span>
+                                    Yêu cầu nhập!</span>
                             </div>
                         </div>
                     </div>
-                    <div class="clearfix requiredInfo">Required Fields</div>
+                    <div class="clearfix requiredInfo">Trường bắt buộc nhập</div>
                     <div class="clearfix"></div>
                     <br>
                     <div class="text-center" style="margin-top: 10px;">
-                        <button type="submit" class="btn btn-primary">Save</button>
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Lưu</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
                     </div>
                 </form>
 
